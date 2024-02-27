@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Gamedev Canvas Workshop</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        background: #0E1141;
+        
+      }
+      canvas {
+        background: #2C306F;
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <canvas id="myCanvas" width="300" height="500"></canvas>
+    <script src="Ship.js"></script> 
+    <script src="Bullet.js"></script> 
+    <script>
+    
+
+
+        // JavaScript code goes here
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let x = canvas.width / 2;
+        let y = canvas.height - 100;
+
+
+
+        bullets = []
+
+        Ship = new Ship()
+
+        function draw ()  {
+            window.requestAnimationFrame(draw);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            bullets.forEach(bullet => bullet.live());
+
+            Ship.draw()
+        };
+
+        window.requestAnimationFrame(draw);
+
+        canvas.addEventListener("click", function(){
+            bullets.push(new Bullet(150, 420)) 
+
+        });
+
+        canvas.addEventListener("touchstart", function(){
+            bullets.push(new Bullet(150, 420)) 
+
+        });
+
+    </script>
+  </body>
+</html>

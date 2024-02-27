@@ -23,7 +23,7 @@ class Bullet {
       this.animate();
       this.draw();
 
-      if (this.getY() < 100) {
+      if (this.getY() < 50) {
         console.log(this.getY());
         delete this.x;
         delete this.y;

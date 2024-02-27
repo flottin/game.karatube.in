@@ -21,9 +21,9 @@ function draw ()  {
 window.requestAnimationFrame(draw);
 
 canvas.addEventListener("click", function(){
-    bullets.push(new Bullet(170, 440)) 
+    bullets.push(new Bullet(170, 460)) 
 });
 
 canvas.addEventListener("touchstart", function(){
-    bullets.push(new Bullet(170, 440)) 
+    bullets.push(new Bullet(170, 460)) 
 });

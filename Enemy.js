@@ -20,7 +20,7 @@ class Enemy {
     var sWidth = canvas.width;
     var sHeight = canvas.height;
     var path = new Path2D();
-    path.moveTo(sWidth / 2 + 40, 60);
+    path.moveTo(sWidth / 2 + 40, 20);
     path.lineTo(sWidth / 2, 10);
     path.lineTo(sWidth / 2 - 40, 15);
     ctx.beginPath();

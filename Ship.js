@@ -4,8 +4,14 @@ class Ship {
     this.y = y;
   }
 
-  animate() {
-    this.y = this.y - 6;
+  right() {
+    if (this.x < 350)
+    this.x = this.x + 6;
+  }
+  
+  left() {
+    if (this.x > 0)
+    this.x = this.x - 6;
   }
 
   draw() {

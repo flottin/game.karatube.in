@@ -6,9 +6,13 @@ let y = canvas.height - 100;
 
 bullets = [];
 
-Ship = new Ship(x, y);
+let Ship = new Ship(x, y);
 
 Enemy = new Enemy(x, y);
+
+let score = 0;
+
+
 
 function draw() {
   window.requestAnimationFrame(draw);
@@ -16,8 +20,11 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   bullets.forEach((bullet) => bullet.live());
-
+  
+  
   Enemy.draw();
+  
+  ctx.fillText(score+"", 10, 250);
 
   Ship.draw();
 }

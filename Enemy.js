@@ -15,18 +15,18 @@ class Enemy {
     ctx.shadowColor = "red";
     ctx.shadowBlur = 15;
     ctx.beginPath();
-    ctx.restore();
 
     var sWidth = canvas.width;
     var sHeight = canvas.height;
     var path = new Path2D();
     path.moveTo(sWidth / 2 + 40, 20);
-    path.lineTo(sWidth / 2, 10);
-    path.lineTo(sWidth / 2 - 40, 15);
+    path.lineTo(sWidth / 2, 50);
+    path.lineTo(sWidth / 2 - 40, 20);
     ctx.beginPath();
     ctx.fillStyle = "black";
     ctx.fill(path);
     ctx.closePath();
+    ctx.restore();
   }
 
   getY() {

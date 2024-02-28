@@ -12,7 +12,7 @@ class Ship {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     ctx.save();
-    ctx.shadowColor = "red";
+    ctx.shadowColor = "green";
     ctx.shadowBlur = 15;
     ctx.beginPath();
 

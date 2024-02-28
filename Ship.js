@@ -11,6 +11,8 @@ class Ship {
   draw() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
+    ctx.shadowColor = "red";
+    ctx.shadowBlur = 15;
     ctx.beginPath();
 
     var sWidth = canvas.width;

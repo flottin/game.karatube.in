@@ -12,7 +12,7 @@ class Enemy {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     ctx.save();
-    ctx.shadowColor = "green";
+    ctx.shadowColor = "red";
     ctx.shadowBlur = 15;
     ctx.beginPath();
     ctx.restore();
@@ -20,7 +20,7 @@ class Enemy {
     var sWidth = canvas.width;
     var sHeight = canvas.height;
     var path = new Path2D();
-    path.moveTo(sWidth / 2 + 40, 90);
+    path.moveTo(sWidth / 2 + 40, 60);
     path.lineTo(sWidth / 2, 10);
     path.lineTo(sWidth / 2 - 40, 15);
     ctx.beginPath();

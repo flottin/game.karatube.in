@@ -1,39 +1,62 @@
+/**
+ * Init game
+ */
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
 let x = canvas.width / 2;
 let y = canvas.height - 100;
 
-bullets = [];
-
-Ship = new Ship(x, y);
-
-Enemy = new Enemy(x, y);
-
+let bullets = [];
+let stars = [];
 let score = 0;
+let count = 0;
 
+Ally = new Ally();
+Ally.init();
+
+Enemy = new Enemy();
+Enemy.init();
+Score = new Score();
+
+/**
+ * Game loop
+ */
 function draw() {
   window.requestAnimationFrame(draw);
+  count++;
+  if (count % 10 === 0) {
+    stars.push(new Star());
+    count = 0;
+  }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  bullets.forEach((bullet) => bullet.live());
+  bullets.forEach((bullet, i) => {
+    if (!bullet.live()) {
+      bullets.splice(i, 1);
+      console.log("delete bullets");
+      console.log(bullets);
+    }
+  });
+
+  stars.forEach((star) => star.live());
 
   Enemy.draw();
-  ctx.font = "16px serif";
-  ctx.fillText("Score: " + score + "", 250, 20);
-
-  Ship.draw();
+  Ally.draw();
+  Score.draw();
 }
-
 window.requestAnimationFrame(draw);
 
-canvas.addEventListener("click", function () {
-  bullets.push(new Bullet(170, 460));
-});
+/**
+ * Events
+ */
+function clickEvent(e) {
+  var rect = canvas.getBoundingClientRect();
+  Ally.go(e.clientX - rect.x);
+  Ally.shoot();
+}
 
-canvas.addEventListener("touchstart", function (e) {
-  bullets.push(new Bullet(170, 460));
-  if(e.clientX > 150)
-    Ship.right();
-});
+canvas.addEventListener("click", (e) => clickEvent(e));
+
+canvas.addEventListener("touchstart", (e) => clickEvent(e));

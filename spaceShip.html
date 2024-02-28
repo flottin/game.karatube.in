@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Insert Image into Canvas</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Create an image object
+        const image = new Image();
+
+        // Set the source of the image
+        image.src = 'ship.png'; // Replace 'path/to/your/image.jpg' with the actual path to your image
+
+        // After the image is loaded, draw it onto the canvas
+        image.onload = function () {
+            ctx.drawImage(image, 50, 50, image.width / 6, image.height / 6); // Draw the image at position (50, 50) with half the original width and height
+
+        };
+    </script>
+</body>
+
+</html>

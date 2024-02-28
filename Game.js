@@ -32,6 +32,8 @@ canvas.addEventListener("click", function () {
   bullets.push(new Bullet(170, 460));
 });
 
-canvas.addEventListener("touchstart", function () {
+canvas.addEventListener("touchstart", function (e) {
   bullets.push(new Bullet(170, 460));
+  if(e.clientX > 150)
+    Ship.right();
 });

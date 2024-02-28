@@ -29,6 +29,7 @@ class Enemy {
       if (typeof bullet.x !== "undefined") {
         if (bullet.y < this.by + 10) {
           this.damage = true;
+          score = score + 5;
         }
       }
     });

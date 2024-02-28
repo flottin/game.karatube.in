@@ -11,6 +11,7 @@ class Ship {
   draw() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
+    ctx.save();
     ctx.shadowColor = "red";
     ctx.shadowBlur = 15;
     ctx.beginPath();
@@ -25,6 +26,7 @@ class Ship {
     ctx.fillStyle = "black";
     ctx.fill(path);
     ctx.closePath();
+    ctx.restore();
   }
 
   getY() {

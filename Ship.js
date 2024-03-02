@@ -11,6 +11,8 @@ class Ship {
     this.color = "red";
 
     this.life = 100;
+    
+    this.bulletDamage = 5;
   }
 
   draw() {
@@ -53,9 +55,10 @@ class Ship {
     delete this.ax;
     delete this.by;
     delete this.cx;
-
-    console.log("DELETE");
-    console.log(this);
+    delete this.life;
+    delete this.color;
+    delete this.damage;
+    delete this.bulletDamage;
 
     delete this;
   }
@@ -83,7 +86,7 @@ class Ship {
   }
 
   shoot() {
-    bullets.push(new Bullet(130 + Ally.getX() + 43, 470));
+    bullets.push(new Bullet(130 + Ally.getX() + 43, 470, this.bulletDamage));
   }
 
   right() {

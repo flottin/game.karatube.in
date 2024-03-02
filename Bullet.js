@@ -1,7 +1,8 @@
 class Bullet {
-  constructor(x, y) {
+  constructor(x, y, damage) {
     this.x = x;
     this.y = y;
+    this.damage = damage;
   }
 
   animate() {
@@ -9,11 +10,19 @@ class Bullet {
   }
 
   draw() {
+    switch(this.damage){
+      case 5:
+        this.size = 4;
+        break;
+      case 10:
+        this.size = 5;
+        break;
+    }
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
     ctx.save();
     ctx.beginPath();
-    ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = "yellow";
     ctx.fill();
     ctx.closePath();
@@ -27,7 +36,6 @@ class Bullet {
 
       if (this.getY() < 5) {
         this.delete();
-        console.log("DELETE");
         return false;
       }
       return true;
@@ -38,9 +46,8 @@ class Bullet {
   delete() {
     delete this.x;
     delete this.y;
+    delete this.damage;
     delete this;
-    console.log("DELETE");
-    console.log(this);
   }
 
   getY() {

@@ -69,7 +69,7 @@ class Ship {
           bullet.x < this.ax
         ) {
           this.damage = true;
-          this.life = this.life - 5;
+          this.life = this.life - 10;
           bullet.delete();
           bullets.splice(i, 1);
           score = score + 5;

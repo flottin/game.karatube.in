@@ -1,6 +1,6 @@
 class Bullet {
   constructor(x, y, damage) {
-    this.x = x;
+    this.x = x - 5;
     this.y = y;
     this.damage = damage;
   }
@@ -10,7 +10,7 @@ class Bullet {
   }
 
   draw() {
-    switch(this.damage){
+    switch (this.damage) {
       case 5:
         this.size = 4;
         break;
@@ -25,6 +25,8 @@ class Bullet {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = "yellow";
     ctx.fill();
+    ctx.shadowColor = "red";
+    ctx.shadowBlur = 15;
     ctx.closePath();
     ctx.restore();
   }

@@ -4,59 +4,89 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
-let x = canvas.width / 2;
-let y = canvas.height - 100;
-
-let bullets = [];
-let stars = [];
-let score = 0;
-let count = 0;
-
-Ally = new Ally();
-Ally.init();
-
-Enemy = new Enemy();
-Enemy.init();
-Score = new Score();
-
 /**
- * Game loop
+ * Game Object
  */
-function draw() {
-  window.requestAnimationFrame(draw);
-  count++;
-  if (count % 10 === 0) {
-    stars.push(new Star());
-    count = 0;
+class Game {
+  constructor() {
+    this.score = new Score();
+    this.bullets = [];
+    this.stars = [];
+    this.ally = new Ally(this.score, this.bullets);
+    this.enemy = new Enemy(this.score, this.bullets);
+
+    this.enemies = [];
+    this.count = 0;
+
+    this.init();
   }
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  /**
+   * Initialize values
+   */
+  init() {
+    canvas.addEventListener("click", (e) => this.clickEvent(e), {
+      passive: true,
+    });
 
-  bullets.forEach((bullet, i) => {
-    if (!bullet.live()) {
-      bullets.splice(i, 1);
-      console.log("delete bullets");
-      console.log(bullets);
+    canvas.addEventListener("touchstart", (e) => this.clickEvent(e), {
+      passive: true,
+    });
+
+    window.requestAnimationFrame(() => {
+      this.draw(this);
+    });
+  }
+
+  getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  /**
+   * Loop : main program
+   */
+  draw(thisElement) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    this.count++;
+    if (this.count % 10 === 0) {
+      this.stars.push(new Star());
+      //this.count = 0;
     }
-  });
 
-  stars.forEach((star) => star.live());
+    if (this.count % 250 === 0) {
+      this.enemies.push(
+        new Enemy(this.score, this.bullets, this.getRandomInt(340))
+      );
 
-  Enemy.draw();
-  Ally.draw();
-  Score.draw();
+      this.count = 0;
+    }
+
+    this.score.draw();
+    this.ally.draw();
+
+    this.stars.forEach((star) => star.live());
+
+    this.bullets.forEach((bullet, i) => {
+      if (!bullet.live()) {
+        this.bullets.splice(i, 1);
+      }
+    });
+
+    this.enemies.forEach((enemy) => enemy.draw());
+
+    window.requestAnimationFrame(() => {
+      this.draw(thisElement);
+    });
+  }
+
+  /**
+   * Events
+   */
+  clickEvent(e) {
+    var rect = canvas.getBoundingClientRect();
+    this.ally.go(e.clientX - rect.x);
+    this.ally.shoot();
+  }
 }
-window.requestAnimationFrame(draw);
 
-/**
- * Events
- */
-function clickEvent(e) {
-  var rect = canvas.getBoundingClientRect();
-  Ally.go(e.clientX - rect.x);
-  Ally.shoot();
-}
-
-canvas.addEventListener("click", (e) => clickEvent(e));
-
-canvas.addEventListener("touchstart", (e) => clickEvent(e));
+Game = new Game();

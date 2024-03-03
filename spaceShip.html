@@ -19,12 +19,22 @@
         // Create an image object
         const image = new Image();
 
+        // var path = new Path2D('M 100,100 h 50 v 50 h 50');
+        // ctx.stroke(path);
+
         // Set the source of the image
         image.src = 'ship.png'; // Replace 'path/to/your/image.jpg' with the actual path to your image
 
+        var img = new Image();
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+
+        }
+        img.src = "./spaceship.svg";
+
         // After the image is loaded, draw it onto the canvas
         image.onload = function () {
-            ctx.drawImage(image, 50, 50, image.width / 6, image.height / 6); // Draw the image at position (50, 50) with half the original width and height
+            //ctx.drawImage(image, 50, 50, image.width / 6, image.height / 6); // Draw the image at position (50, 50) with half the original width and height
 
         };
     </script>
